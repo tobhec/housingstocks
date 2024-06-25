@@ -121,6 +121,6 @@ stock <- rbind(stock, stock_all)
 
 
 # Load MAPADOMO data in case it can be used to extend
-mapadomo_full <- fread("C:/Users/hecttob/housestock/EU_national.csv", header = TRUE)
+mapadomo_full <- fread("C://Users//hecttob//git//housingstocks//mapadomo_data//EU_national.csv", header = TRUE)
 mapadomo_dwellings <- mapadomo_full[nuts == "DK" & indicator == "dwellings"]
 mapadomo_m2 <- mapadomo_full[nuts == "DK" & indicator == "totalm2"]

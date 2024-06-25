@@ -59,7 +59,7 @@ mydict = c("one- or two-dwelling buildings" = "house",
 
 
 # Load the raw data
-pxq <- pxweb_query("C://Users//hecttob//json_queries//dwellings_SE.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//dwellings_SE.json")
 pxd <- pxweb_get("https://api.scb.se/OV0104/v1/doris/en/ssd/START/BO/BO0104/BO0104D/BO0104T04", 
                   query = pxq)
 dwellings <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
@@ -83,7 +83,7 @@ dwellings <- dwellings[, .(dwellings = sum(dwellings)), by =  c("type", "year")]
 
 
 # Load the raw data
-pxq <- pxweb_query("C://Users//hecttob//json_queries//totalm2_SE.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//totalm2_SE.json")
 pxd <- pxweb_get("https://api.scb.se/OV0104/v1/doris/en/ssd/START/MI/MI0810/MI0810B/BostLokiTatortReg", 
                   query = pxq)
 totalm2 <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
@@ -130,12 +130,12 @@ stock_md3["all", , ] <-  stock_md3["flat", , ] + stock_md3["house", , ]
 
 
 # Load the raw data 1989 - 2019
-pxq <- pxweb_query("C://Users//hecttob//json_queries//dem_1989_2019.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//dem_1989_2019.json")
 pxd <- pxweb_get("https://api.scb.se/OV0104/v1/doris/en/ssd/START/BO/BO0101/BO0101F/LagenhetRivAkBpLtRAr", query = pxq)
 dem_1989_2019 <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
 
 # Load the raw data 2020 - latest
-pxq <- pxweb_query("C://Users//hecttob//json_queries//dem_2020_latest.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//dem_2020_latest.json")
 pxd <- pxweb_get("https://api.scb.se/OV0104/v1/doris/en/ssd/START/BO/BO0101/BO0101F/LagenhRivAkBpLtRArN", query = pxq)
 dem_2020_latest <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
 
@@ -149,7 +149,7 @@ names(demolitions)[names(demolitions) == "Demolition of dwellings in multi-dwell
 
 
 # Load the raw data
-pxq <- pxweb_query("C://Users//hecttob//json_queries//conversions.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//conversions.json")
 pxd <- pxweb_get("https://api.scb.se/OV0104/v1/doris/en/ssd/START/BO/BO0101/BO0101D/LghTillOmbUpplatArN", query = pxq)
 conversions <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
 names(conversions)[names(conversions) == "Converted dwellings in multi-dwelling buildings with government subsidies (addition)"] <- "conversions"
@@ -160,7 +160,7 @@ names(conversions)[names(conversions) == "Converted dwellings in multi-dwelling 
 
 
 # Load the raw data
-pxq <- pxweb_query("C://Users//hecttob//json_queries//completions.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//completions.json")
 pxd <- pxweb_get("https://api.scb.se/OV0104/v1/doris/en/ssd/START/BO/BO0101/BO0101A/LghReHustypAr", query = pxq)
 completions_by_type <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
 names(completions_by_type)[names(completions_by_type) == "Completed dwellings in newly constructed buildings"] <- "completions"
@@ -196,7 +196,7 @@ stock_md3["all",
 ################################################################################
 
 # Load MAPADOMO data in case it can be used to extend
-mapadomo_full <- fread("C:/Users/hecttob/housestock/EU_national.csv", header = TRUE)
+mapadomo_full <- fread("C://Users//hecttob//housingstocks//mapadomo_data//EU_national.csv", header = TRUE)
 mapadomo_dwellings <- mapadomo_full[nuts == "SE" & indicator == "dwellings"]
 mapadomo_m2 <- mapadomo_full[nuts == "SE" & indicator == "totalm2"]
 
@@ -218,7 +218,7 @@ ecb_completions <- mds("ECB/RESH/A.SE._T.N.NTR.HCOM.SE2._Z.N._Z")
 
 
 stock <- dcast(as.data.table(stock_md3), type + TIME ~ A, value.var = "obs_value")
-fwrite(stock, "C://Users//hecttob//housestock//SE_stock.csv")
+fwrite(stock, "C://Users//hecttob//git//housingstock//mapadomo_data//SE_stock.csv")
 
 ################################################################################
 ##################### LINKS ETC ################################################

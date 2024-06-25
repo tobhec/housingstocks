@@ -51,13 +51,13 @@ mydict = c("one- or two-dwelling buildings" = "house",
 
 
 # Load the raw data (occupied dwellings)
-pxq <- pxweb_query("C://Users//hecttob//json_queries//dwellings_occ_FI.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//dwellings_occ_FI.json")
 pxd <- pxweb_get("https://pxdata.stat.fi:443/PxWeb/api/v1/en/StatFin/asas/statfin_asas_pxt_116a.px", 
                  query = pxq)
 dwellings_occ <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
 
 # Load the raw data (total dwellings 2023)
-pxq <- pxweb_query("C://Users//hecttob//json_queries//dwellings_FI.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//dwellings_FI.json")
 pxd <- pxweb_get("https://pxdata.stat.fi:443/PxWeb/api/v1/en/StatFin/asas/statfin_asas_pxt_116f.px", 
                  query = pxq)
 dwellings <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
@@ -91,7 +91,7 @@ imputena()
 
 ### ADD BUILDING STARTS
 # Load the raw data
-pxq <- pxweb_query("C://Users//hecttob//json_queries//totalm2_compl_FI.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//totalm2_compl_FI.json")
 pxd <- pxweb_get("https://pxdata.stat.fi:443/PxWeb/api/v1/en/StatFin/ras/statfin_ras_pxt_12fy.px", 
                  query = pxq)
 completions_totalm2 <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))

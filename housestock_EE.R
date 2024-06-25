@@ -37,7 +37,7 @@ mydict = c("Number of dwellings" = "all",
  
 
 # Load the raw data
-pxq <- pxweb_query("C://Users//hecttob//json_queries//dwellings_EE.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//dwellings_EE.json")
 pxd <- pxweb_get("https://andmed.stat.ee/api/v1/en/stat/KVE01", query = pxq)
 dwellings <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
 
@@ -60,7 +60,7 @@ dwellings <- dwellings[, c("year", "type", "dwellings")]
 
 
 # Load the raw data
-pxq <- pxweb_query("C://Users//hecttob//json_queries//totalm2_compl_EE.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//totalm2_compl_EE.json")
 pxd <- pxweb_get("https://andmed.stat.ee/api/v1/en/stat/EH06", 
                  query = pxq)
 completions <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
@@ -92,6 +92,6 @@ names(stock)[names(stock) == "type.x"] <- "type"
 
 
 # Load MAPADOMO data in case it can be used to extend
-mapadomo_full <- fread("C:/Users/hecttob/housestock/EU_national.csv", header = TRUE)
+mapadomo_full <- fread("C://Users//hecttob//git//housingstocks//mapadomo_data//EU_national.csv", header = TRUE)
 mapadomo_dwellings <- mapadomo_full[nuts == "EE" & indicator == "dwellings"]
 mapadomo_m2 <- mapadomo_full[nuts == "EE" & indicator == "totalm2"]
