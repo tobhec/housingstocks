@@ -1,0 +1,44 @@
+{
+  "query": [
+    {
+      "code": "Rakennusvaihe",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "3"
+        ]
+      }
+    },
+    {
+      "code": "Alue",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "SSS"
+        ]
+      }
+    },
+    {
+      "code": "Käyttötarkoitus",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "SSS"
+        ]
+      }
+    },
+    {
+      "code": "Tiedot",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "kerrosala",
+          "asuntolkm"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "vs:RegionRiket99",
+        "values": [
+          "00"
+        ]
+      }
+    },
+    {
+      "code": "Hustyp",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "FLERBO",
+          "SMÅHUS"
+        ]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "BO0101A5"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json"
+  }
+}

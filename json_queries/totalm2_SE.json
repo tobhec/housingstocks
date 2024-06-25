@@ -1,0 +1,36 @@
+{
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "vs:RegionRiket99",
+        "values": [
+          "00"
+        ]
+      }
+    },
+    {
+      "code": "Typkod",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "001",
+          "002",
+          "003"
+        ]
+      }
+    },
+    {
+      "code": "ContentsCode",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "000001RM"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json"
+  }
+}

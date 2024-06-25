@@ -1,0 +1,16 @@
+{
+  "query": [
+    {
+      "code": "Region",
+      "selection": {
+        "filter": "vs:RegionRiket99",
+        "values": [
+          "00"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json"
+  }
+}

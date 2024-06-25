@@ -1,0 +1,34 @@
+{
+  "query": [
+    {
+      "code": "Maakond",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "1"
+        ]
+      }
+    },
+    {
+      "code": "Eluruumi tüüp",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "1"
+        ]
+      }
+    },
+    {
+      "code": "Näitaja",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "1"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json"
+  }
+}

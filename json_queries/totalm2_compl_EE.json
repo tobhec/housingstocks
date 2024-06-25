@@ -1,0 +1,21 @@
+{
+  "query": [
+    {
+      "code": "Näitaja",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "PNUM",
+          "DNUM_1DW",
+          "DNUM_2DW",
+          "DNUM_TERR",
+          "DNUM_FLAT",
+          "PSQM_AVG"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json"
+  }
+}
