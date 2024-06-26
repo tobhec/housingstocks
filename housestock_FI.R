@@ -6,11 +6,12 @@
 # Household-dwelling units (as I understand it, this is basically occupied dwellings) 
 # downloaded from
 # https://pxdata.stat.fi/PxWeb/pxweb/en/StatFin/StatFin__asas/statfin_asas_pxt_116a.px/
-# via API. This is used as a proxy for dwellings, to extend total dwellings from 2023 (only available year).
+# via API. This is used as a proxy (in terms of growth rates) for dwellings, to backwards-extend total dwellings 
+# from 2023 (only available year).
 #
 # Dwellings (only year 2023) is downloaded from 
 # https://pxdata.stat.fi/PxWeb/pxweb/en/StatFin/StatFin__asas/statfin_asas_pxt_116f.px/table/tableViewLayout1/
-# via API, and extended by Household-dwelling units
+# via API, and backwards-extended by Household-dwelling units growth rates
 #
 # Monthly totalm2 (only for completions of new buildings. Not possible to find)
 # for dwellings specifically) downloaded from 
@@ -23,7 +24,6 @@
 # Completions (monthly) downloaded from
 # https://pxdata.stat.fi/PxWeb/pxweb/en/StatFin/StatFin__ras/statfin_ras_pxt_12fy.px/table/tableViewLayout1/
 # via API, and average to get yearly completions
-
 
 
 #install.packages("MDecfin")
@@ -74,16 +74,28 @@ names(dwellings_occ)[names(dwellings_occ) == "Year"] <- "year"
 dwellings_md3 <- as.md3(dwellings[, c("type", "year", "dwellings")])
 dwellings_occ_md3 <- as.md3(dwellings_occ[, c("type", "year", "dwellings_occ")])
 
+# Extract the years we will extend from the proxy, and fill the dwellings_md3 with NAs for all years we will extend
+years_available <- dimcodes(dwellings_md3)$TIME
+years_to_extend <- dimcodes(dwellings_occ_md3)$TIME
+years_to_extend <- setdiff(years_to_extend, years_available)
+dwellings_temp <- dwellings_occ_md3
+dwellings_temp[, years_available] <- dwellings_md3[, years_available]
+dwellings_temp[, years_to_extend] <- NA
+dwellings_occ_md3 <- as.md3(dwellings_occ[, c("type", "year", "dwellings_occ")]) # DELETE LATER
 
+#dwellings_md3[, years_to_extend] <- NA
+#dwellings_md3[, years_to_extend] <- NA
+#dwellings_md3[, 2022] <- NA
+#dwellings_md3
 
-years <- dwellings_occ_md3[1, ][[1]]
-dwellings_md3["dwellings_occ", years] <- dwellings_occ_md3[1, ][[2]]
-
-
-
-imputena()
-
-
+# Use imputena from MD3 package to backwards extend dwellings from year 2023 based on the growth rates of occupied dwellings
+for(indicator in dimcodes(dwellings_occ_md3)$type[, 1])
+{
+  dwellings_temp[indicator,  ] <- imputena(dwellings_temp[indicator, ], 
+                                           proxy = dwellings_occ_md3[indicator, ][[2]], 
+                                           method = "dlog", 
+                                           direction = "backward")
+}
 
 ################################################################################
 ##################### TOTALM2 & COMPLETIONS ####################################
