@@ -130,12 +130,12 @@ stock_md3["all", , ] <-  stock_md3["flat", , ] + stock_md3["house", , ]
 
 
 # Load the raw data 1989 - 2019
-pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//dem_1989_2019.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//dem_1989_2019_SE.json")
 pxd <- pxweb_get("https://api.scb.se/OV0104/v1/doris/en/ssd/START/BO/BO0101/BO0101F/LagenhetRivAkBpLtRAr", query = pxq)
 dem_1989_2019 <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
 
 # Load the raw data 2020 - latest
-pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//dem_2020_latest.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//dem_2020_latest_SE.json")
 pxd <- pxweb_get("https://api.scb.se/OV0104/v1/doris/en/ssd/START/BO/BO0101/BO0101F/LagenhRivAkBpLtRArN", query = pxq)
 dem_2020_latest <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
 
@@ -149,7 +149,7 @@ names(demolitions)[names(demolitions) == "Demolition of dwellings in multi-dwell
 
 
 # Load the raw data
-pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//conversions.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//conversions_SE.json")
 pxd <- pxweb_get("https://api.scb.se/OV0104/v1/doris/en/ssd/START/BO/BO0101/BO0101D/LghTillOmbUpplatArN", query = pxq)
 conversions <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
 names(conversions)[names(conversions) == "Converted dwellings in multi-dwelling buildings with government subsidies (addition)"] <- "conversions"
@@ -160,7 +160,7 @@ names(conversions)[names(conversions) == "Converted dwellings in multi-dwelling 
 
 
 # Load the raw data
-pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//completions.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//completions_SE.json")
 pxd <- pxweb_get("https://api.scb.se/OV0104/v1/doris/en/ssd/START/BO/BO0101/BO0101A/LghReHustypAr", query = pxq)
 completions_by_type <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
 names(completions_by_type)[names(completions_by_type) == "Completed dwellings in newly constructed buildings"] <- "completions"
