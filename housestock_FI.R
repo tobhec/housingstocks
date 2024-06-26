@@ -103,7 +103,7 @@ for(indicator in dimcodes(dwellings_occ_md3)$type[, 1])
 
 ### ADD BUILDING STARTS
 # Load the raw data
-pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//totalm2_compl_FI.json")
+pxq <- pxweb_query("C://Users//hecttob//git//housingstocks//json_queries//totalm2_compl_starts_FI.json")
 pxd <- pxweb_get("https://pxdata.stat.fi:443/PxWeb/api/v1/en/StatFin/ras/statfin_ras_pxt_12fy.px", 
                  query = pxq)
 completions_totalm2 <- as.data.table(as.data.frame(pxd, column.name.type = "text", variable.value.type = "text"))
